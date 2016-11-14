@@ -207,10 +207,10 @@ module.exports = function(html, cb) {
             currentItemList.add('/*' + text + '*/', false); // @todo comment-safety
         },
         onend: function () {
-            cb(null, currentItemList.content);
+            cb && cb(null, currentItemList.content);
         }
     }, {decodeEntities: true, xmlMode: true});
-
     parser.write(html);
     parser.end();
+    return currentItemList.content
 }
